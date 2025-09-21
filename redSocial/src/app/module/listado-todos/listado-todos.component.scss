@@ -1,0 +1,15 @@
+.todo-container {
+  max-width: 600px;
+  margin: 16px auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.todo-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+}

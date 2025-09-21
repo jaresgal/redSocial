@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
 
@@ -16,7 +17,7 @@ export class ListadoUsuarios implements OnInit {
   users: User[] = [];
   isLoading = true;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe({
@@ -29,5 +30,9 @@ export class ListadoUsuarios implements OnInit {
         this.isLoading = false;
       },
     });
+  }
+
+  verDetalle(id: number) {
+    this.router.navigate(['/usuario', id]); // navega a la ruta detalle
   }
 }

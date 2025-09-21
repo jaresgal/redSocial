@@ -1,0 +1,38 @@
+<div class="todo-container">
+  <!-- Buscador -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Buscar TODO</mat-label>
+    <input matInput placeholder="Buscar..." formControlName="search" />
+  </mat-form-field>
+
+  <!-- Agregar nuevo TODO -->
+  <form [formGroup]="addForm" (ngSubmit)="addTodo()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nuevo TODO</mat-label>
+      <input
+        matInput
+        placeholder="Ingrese texto sin números"
+        formControlName="title"
+      />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="addForm.invalid"
+    >
+      Agregar
+    </button>
+  </form>
+
+  <!-- Listado TODOs -->
+  <mat-card
+    *ngFor="let todo of filteredTodos$ | async"
+    class="todo-card mat-elevation-z2 mb-2"
+  >
+    <mat-checkbox [checked]="todo.completed" (change)="toggleCompleted(todo)">{{
+      todo.title
+    }}</mat-checkbox>
+    <button mat-icon-button color="warn" (click)="deleteTodo(todo)">🗑️</button>
+  </mat-card>
+</div>

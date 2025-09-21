@@ -1,0 +1,41 @@
+<div *ngIf="isLoading" class="text-center my-5">
+  <mat-spinner></mat-spinner>
+</div>
+
+<mat-card *ngIf="!isLoading && user" class="user-detail-card mat-elevation-z3">
+  <mat-card-header>
+    <mat-card-title>{{ user.name }}</mat-card-title>
+    <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Phone:</strong> {{ user.phone }}</p>
+    <p><strong>Website:</strong> {{ user.website }}</p>
+    <p><strong>Company:</strong> {{ user.company.name }}</p>
+    <p><strong>CatchPhrase:</strong> {{ user.company.catchPhrase }}</p>
+    <p><strong>City:</strong> {{ user.address.city }}</p>
+
+    <h3>TODOs</h3>
+    <div class="albums-container">
+      <mat-card class="album-card mat-elevation-z1 mb-2">
+        <app-listado-todos *ngIf="user" [userId]="user.id"></app-listado-todos>
+      </mat-card>
+    </div>
+
+    <h3>Álbumes</h3>
+    <div class="albums-container" *ngIf="user?.albums?.length">
+      <mat-card
+        *ngFor="let album of user?.albums"
+        class="album-card mat-elevation-z1 mb-2"
+      >
+        <mat-card-title>{{ album.title }}</mat-card-title>
+        <img
+          *ngIf="getFirstPhoto(album)"
+          [src]="getFirstPhoto(album)?.thumbnailUrl"
+          [alt]="getFirstPhoto(album)?.title"
+        />
+      </mat-card>
+    </div>
+  </mat-card-content>
+</mat-card>

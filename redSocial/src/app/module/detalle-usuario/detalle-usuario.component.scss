@@ -1,0 +1,19 @@
+.user-detail-card {
+  width: 100%;
+  max-width: 800px;
+  margin: 16px auto;
+  padding: 16px;
+}
+
+.albums-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.album-card img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  margin-top: 8px;
+}
